@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Info Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- নেভিগেশন বার -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎮 Free Fire Info Bot</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">হোম</a>
+                <a href="#search">খোঁজ করুন</a>
+                <a href="#guides">গাইড</a>
+                <a href="#about">সম্পর্কে</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>আপনার Free Fire প্রোফাইল খুঁজে নিন</h2>
+            <p>সম্পূর্ণ স্ট্যাটিস্টিকস এবং তথ্য এক জায়গায়</p>
+        </div>
+    </section>
+
+    <!-- সার্চ সেকশন -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <h2>প্লেয়ার সার্চ করুন</h2>
+            
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="playerUid" 
+                    placeholder="প্লেয়ার ইউআইডি দিন (শুধু সংখ্যা)" 
+                    maxlength="20"
+                >
+                <button onclick="searchPlayer()">খোঁজ করুন 🔍</button>
+            </div>
+
+            <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+
+            <!-- প্লেয়ার ইনফো -->
+            <div id="playerInfo" class="player-info" style="display: none;">
+                <div class="player-header">
+                    <img id="playerAvatar" src="" alt="প্লেয়ার এভাটার" class="avatar">
+                    <div class="player-basic">
+                        <h3 id="playerName"></h3>
+                        <p id="playerUidDisplay"></p>
+                        <span id="playerStatus" class="status-badge"></span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">লেভেল</span>
+                        <span class="stat-value" id="playerLevel"></span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">র‍্যাঙ্ক</span>
+                        <span class="stat-value" id="playerRank"></span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">র‍্যাঙ্ক পয়েন্ট</span>
+                        <span class="stat-value" id="playerRankPoints"></span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">মোট ম্যাচ</span>
+                        <span class="stat-value" id="playerMatches"></span>
+                    </div>
+                </div>
+
+                <div class="detailed-stats">
+                    <h4>বিস্তারিত স্ট্যাটিস্টিকস</h4>
+                    <div class="stats-table">
+                        <tr>
+                            <td class="label">জয়:</td>
+                            <td class="value" id="playerWins"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">জয়ের হার:</td>
+                            <td class="value" id="playerWinRate"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">মোট কিল:</td>
+                            <td class="value" id="playerKills"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">মোট মৃত্যু:</td>
+                            <td class="value" id="playerDeaths"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">K/D রেশিও:</td>
+                            <td class="value" id="playerKDRatio"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">হেডশট:</td>
+                            <td class="value" id="playerHeadshots"></td>
+                        </tr>
+                    </div>
+                </div>
+            </div>
+
+            <!-- এরর মেসেজ -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- গাইড সেকশন -->
+    <section class="guides-section" id="guides">
+        <div class="container">
+            <h2>গেমিং গাইড</h2>
+            <div id="guidesList" class="guides-grid"></div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer class="footer" id="about">
+        <div class="container">
+            <h3>Free Fire Info Bot সম্পর্কে</h3>
+            <p>এটি একটি সম্পূর্ণ বিনামূল্যে বাংলা Free Fire ইনফরমেশন বট। এখানে আপনি আপনার প্রোফাইল ইনফরমেশন, স্ট্যাটিস্টিকস এবং অন্যান্য গুরুত্বপূর্ণ তথ্য পাবেন।</p>
+            
+            <div class="footer-stats">
+                <div>
+                    <strong>সার্ভার স্ট্যাটাস:</strong>
+                    <span id="serverStatus" class="status-badge"></span>
+                </div>
+                <div>
+                    <strong>API স্ট্যাটাস:</strong>
+                    <span id="apiStatus" class="status-badge"></span>
+                </div>
+            </div>
+
+            <p class="footer-credit">
+                © ২০২৬ Free Fire Info Bot | সকল অধিকার সংরক্ষিত | 
+                <a href="https://github.com/jpjihad17-dot/ff-info-bot" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
