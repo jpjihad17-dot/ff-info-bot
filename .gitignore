@@ -1,0 +1,48 @@
+# পাইথন
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ভার্চুয়াল এনভায়রনমেন্ট
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# এনভায়রনমেন্ট ভেরিয়েবল
+.env
+.env.local
+.env.*.local
+
+# লগ ফাইল
+*.log
+logs/
+
+# ক্যাশ
+.cache/
+*.cache
